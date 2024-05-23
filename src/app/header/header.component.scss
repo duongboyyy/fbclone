@@ -31,6 +31,16 @@
             background-color: #ffa500;  
         }
     }
+    .search{
+        border-radius: 20px;
+        height: 40px;
+        border: none;
+        background-color: #dddddd;
+        padding: 10px;
+        &:focus-visible{
+            border-color: white;
+        }
+    }
 }
 .navbar-expand-md{
     justify-content: center;
