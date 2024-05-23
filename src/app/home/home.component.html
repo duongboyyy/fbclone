@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-11">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Using Ckeditor in Angular</h5>
+                <form>
+                    <ckeditor [editor]="Editor" data="<p>Hello, world!</p>" (ready)="onReady($event)"></ckeditor>
+                    <button type="submit" class="btn btn-success">Create</button>
+                </form>
+ 
+            </div>
+ 
+        </div>
+    </div>
+    <div class="col-md-11">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Display value</h5>
+                
+            </div>
+        </div>
+    </div>
+</div>

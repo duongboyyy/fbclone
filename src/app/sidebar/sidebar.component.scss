@@ -1,0 +1,42 @@
+.sidebar{
+    //padding: 10px;
+    position: sticky;
+    top:4rem;
+    height: calc(100vh - 5rem);
+    overflow: auto;
+    overscroll-behavior: contain;
+    padding: 5px!important;
+    .user{
+        font-weight: 600;
+        img{
+            width: 2.5rem;
+            border-radius: 50%;
+        }
+    }
+    .item{
+        margin: 3px;
+        height: 50px;
+        align-items: center;
+        i{
+            margin: 0;
+        }
+        .title{
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+    .item:hover{
+        background-color: rgb(186, 186, 186,0.5);
+        border-radius: 5px;
+       
+    }
+}
+.sidebar::-webkit-scrollbar{
+    //width: 10px;
+    background-color:rgba(255, 255, 255, 0);
+}
+.sidebar:hover::-webkit-scrollbar {
+    background-color:transparent;
+    
+    
+}

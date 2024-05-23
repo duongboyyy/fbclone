@@ -1,0 +1,98 @@
+<div *ngIf="postuser.length>0 else template1">
+    <div *ngFor="let item of postuser">
+        <div class="item-post">
+            <div class="header d-flex justify-content-between">
+                <div class="d-flex">
+                    <div class="image">
+                        <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+                    </div>
+                    <div>
+                        <strong class="name">
+                            {{item.username}}
+                        </strong>
+
+                        <div class="time">
+                            {{item.date | date:'EE, dd/MM/yyy HH:mm'}}
+                        </div>
+
+                    </div>
+                </div>
+                <div class="icon">
+                    <i class="fa-solid fa-ellipsis"></i>
+
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <div class="body">
+                {{item.title | uppercase}}
+                {{item.body}}
+            </div>
+            <hr>
+            <div class="interact d-flex justify-content-between">
+                <div class="like">
+                    <i class="fa-solid fa-heart"></i>{{item.totallike}}
+                </div>
+                <div class="comment">
+                    0<i class="fa-solid fa-comment"></i> 0<i class="fa-solid fa-share"></i>
+                </div>
+            </div>
+            <hr>
+            <div class="footer d-flex justify-content-around w-100">
+                <div appHover class="item flex-fill justify-content-center">
+                    <i class="fa-regular fa-thumbs-up"></i> Like
+                </div>
+                <div appHover class=" item flex-fill justify-content-center" data-toggle="modal"
+                    data-target="#PostModal" 
+                    (click)="GetUserPostById(item.id)" 
+                    >
+                    <i class="fa-regular fa-comment"></i> Comment
+                </div>
+                <div appHover class="item flex-fill justify-content-center">
+                    <i class="fa-solid fa-share"></i> Share
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="PostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="text-align: center; width: 100%;">
+                            Bài viết của {{item.username}}
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div *ngIf="postuserdetail"  >
+                            <app-detail-post [detailpost]="postuserdetail" [cmtpost]="comment">
+                                    
+                            </app-detail-post>     
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <div class="image">
+                            <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+                        </div>
+                        <div class="input">
+                            <input class="input-comment" type="text" placeholder="Yours comment">
+                            
+                            <button (click)="click()">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<ng-template #template1>
+    Loading....
+</ng-template>

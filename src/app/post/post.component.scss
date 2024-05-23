@@ -1,0 +1,97 @@
+.item-post{
+    width: 35rem;
+    background-color: white;
+    margin: 12px;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    .header{
+        height: auto;
+        .image{
+            margin-right: 5px;
+            img{
+                height: 3rem;
+                border-radius: 50%;
+                border: 1px solid #dddddd;
+            }
+        }
+        .name{
+            font-size: 15px;
+        }
+        .time{
+            font-size: 13px;
+            color: rgb(101, 103, 107);
+        }
+        .icon{
+            i{
+                margin: 0 5px;
+                color: rgb(94, 93, 93);
+                font-size: 20px;
+            }
+        }
+    }
+    .interact{
+        .like{
+            color: rgb(101, 103, 107);
+            i{
+                color: red;
+                margin-right: 3px;
+                
+            }
+        }
+        .comment{
+            color: rgb(101, 103, 107);
+            i{
+                color: rgb(83, 83, 83);
+                margin:0 3px;
+                
+            }
+        }    
+    }
+    hr{
+        margin: 0.5rem 0;
+    }
+    .footer{
+        text-align: center;
+        .item{
+            padding: 3px;
+            border-radius: 3px;
+        }
+        .item:hover{
+            cursor: pointer;
+        }
+    }
+}
+.modal-footer{
+    justify-content: flex-start;
+    .image{
+        margin-right: 5px;
+        img{
+            height: 2rem;
+            border-radius: 50%;
+            border: 1px solid #dddddd;
+        }
+    }
+    .input{
+        flex: 1;
+        position: relative;
+        .input-comment{
+            background-color: #d1d1d15c;
+            border-radius: 5px;
+            border: none;
+            height: 2rem;
+            width: 100%;
+            padding: 15px 10px;
+            
+        }
+        button{
+            position: absolute;
+            right: 5px;
+            top: 2px;
+            border: none;
+            background-color: none;
+            color: #656565;
+        }
+    }
+    
+}

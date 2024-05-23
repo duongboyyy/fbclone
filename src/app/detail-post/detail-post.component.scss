@@ -1,0 +1,107 @@
+.detail{
+        background-color: white;
+        padding: 10px;
+        border-radius: 8px;
+        .item-post{
+            // position: relative;
+        }
+        .header{
+            height: auto;
+            .image{
+                margin-right: 5px;
+                img{
+                    height: 3rem;
+                    border-radius: 50%;
+                    border: 1px solid #dddddd;
+                }
+            }
+            .name{
+                font-size: 15px;
+            }
+            .time{
+                font-size: 13px;
+                color: rgb(101, 103, 107);
+            }
+            .icon{
+                i{
+                    margin: 0 5px;
+                    color: rgb(94, 93, 93);
+                    font-size: 20px;
+                }
+            }
+        }
+        .interact{
+            .like{
+                color: rgb(101, 103, 107);
+                i{
+                    color: red;
+                    margin-right: 3px;
+                    
+                }
+            }
+            .comment{
+                color: rgb(101, 103, 107);
+                i{
+                    color: rgb(83, 83, 83);
+                    margin:0 3px;
+                    
+                }
+            }    
+        }
+        hr{
+            margin: 0.5rem 0;
+        }
+        .footer{
+            text-align: center;
+            .item{
+                padding: 3px;
+                border-radius: 3px;
+            }
+            .item:hover{
+                cursor: pointer;
+            }
+        }
+        .comment-list{
+            .item{
+                margin-bottom: 10px;
+            }
+            .avatar{
+                margin-right: 5px;
+                img{
+                    height: 2rem;
+                    border-radius: 50%;
+                    border: 1px solid #dddddd;
+                }
+            }
+            .box{
+                .name{
+                    font-size: 14px;
+                    font-weight: 700;
+                }
+                .body{
+                    background-color: rgb(240, 242, 245);
+                    width: auto;
+                    padding: 5px 10px;
+                    border-radius: 1rem;
+                    font-size: 14px;
+                }
+                .options{
+                    margin-left: 5px;
+                    color: #878787;
+                }
+                .footer{
+                    font-size: 12px;
+                    color: #878787;
+                    div{
+                        margin-left: 10px;
+                    }
+                    .like, .reply{
+                        font-weight: 700;
+                        
+                    }
+                }
+            }
+        }
+        
+    
+}

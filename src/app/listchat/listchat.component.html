@@ -1,0 +1,19 @@
+
+<div class="listchat">
+    <p class="title">Contact person</p>
+    <div appShowbox *ngFor="let item of user" class="item d-flex align-items-center"
+    >
+            <div class="avatar">
+               <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+                <div class="status"></div>
+            </div>
+            <div>
+                {{item.name}}
+            </div>
+            
+    </div>
+</div>
+<div class="create-chat d-flex align-items-center justify-content-center">
+    <i class="fa-solid fa-plus"></i>
+</div>
+<!-- <app-box-chat></app-box-chat> -->

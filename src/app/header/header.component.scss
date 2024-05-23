@@ -1,0 +1,43 @@
+.header{
+    height: 4rem;
+    padding-right: 0;
+    margin: 0;
+    background-color: white!important;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    border-bottom: 1px solid #dddddd;
+    .item{
+        color: black;
+        border-radius: 10px;
+        position: relative;
+        i{
+            font-size: 20px;
+            padding: 8px;
+        }
+        img{
+            height: 2rem;
+            border-radius: 50%;
+        }
+        .dt{
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            left: 0;
+            bottom: -5px;
+        }
+    }
+    .active{
+        color: #ffa500;
+        .dt{
+            background-color: #ffa500;  
+        }
+    }
+}
+.navbar-expand-md{
+    justify-content: center;
+}
+.dropdown-toggle::after{
+    display: none;
+}
+.dropdown-menu {
+    top: 3.5rem;
+}
