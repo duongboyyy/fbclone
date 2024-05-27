@@ -24,8 +24,8 @@
                 </div>
             </div>
             <div class="body">
-                {{item.title | uppercase}}
-                {{item.body}}
+                <!-- {{item.title | uppercase}} -->
+                <span [innerHTML]="item.body"></span>
             </div>
             <hr>
             <div class="interact d-flex justify-content-between">

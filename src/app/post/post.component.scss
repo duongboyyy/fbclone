@@ -51,6 +51,16 @@
     hr{
         margin: 0.5rem 0;
     }
+    .body{
+        .image{
+            width: 100%;
+            img{
+                width: 100%!important;
+                height: 100%!important;
+                object-fit: cover;
+            }   
+        }
+    }
     .footer{
         text-align: center;
         .item{

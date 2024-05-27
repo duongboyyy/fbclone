@@ -22,7 +22,7 @@ import { DetailPostComponent } from './detail-post/detail-post.component';
 import { BoxChatComponent } from './box-chat/box-chat.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowboxDirective } from './directive/showbox.directive';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
@@ -55,8 +55,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    CKEditorModule
-    
+    CKEditorModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

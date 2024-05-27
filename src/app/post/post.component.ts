@@ -34,14 +34,14 @@ export class PostComponent implements OnInit {
       setTimeout(() => {
         this.GetUserPost();
       }, 200);
-
+      console.log(this.postlist)
     });
-
+    
   }
   GetUserPost(): void {
     forkJoin(
       this.postlist.map(post =>
-        this.postService.getUsersById(post.userId)
+        this.postService.getUsersById(parseInt(post.idUser))
       )
     ).subscribe((users: User[]) => {
       users.forEach((user, index) => {
@@ -49,10 +49,9 @@ export class PostComponent implements OnInit {
 
         if (Array.isArray(user) && user.length > 0) {
           const p: Postuser = {
-            id: post.id,
+            id: post.idPost,
             username: user[0].name,
-            date: new Date(),
-            title: post.title,
+            date: post.time,
             body: post.body,
             totallike: 0,
             comment: '',
@@ -97,3 +96,4 @@ export class PostComponent implements OnInit {
     console.log("click")
   }
 }
+
