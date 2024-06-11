@@ -6,6 +6,7 @@ import { Postuser } from '../model/postuser';
 import { delay, forkJoin, mergeMap, switchMap } from 'rxjs';
 import { config } from 'process';
 import { Comment } from '../model/comment';
+import { AccountService } from '../services/account.service';
 
 
 
@@ -22,7 +23,8 @@ export class PostComponent implements OnInit {
   postuser: Postuser[] = []
   postuserdetail!: Postuser | undefined
   comment!: Comment[]
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService
+    ,private accountService:AccountService) {
 
   }
 
@@ -36,42 +38,41 @@ export class PostComponent implements OnInit {
       }, 200);
       console.log(this.postlist)
     });
-    
   }
   GetUserPost(): void {
     forkJoin(
       this.postlist.map(post =>
-        this.postService.getUsersById(parseInt(post.idUser))
+        this.accountService.getUserById(post.userId)
       )
     ).subscribe((users: User[]) => {
+      console.log(users)
       users.forEach((user, index) => {
         const post = this.postlist[index];
-
-        if (Array.isArray(user) && user.length > 0) {
-          const p: Postuser = {
-            id: post.idPost,
-            username: user[0].name,
-            date: post.time,
-            body: post.body,
-            totallike: 0,
-            comment: '',
-            watch: 0
-          };
-
-          this.postuser.push(p);
-        }
-
+        const p: Postuser = {
+          username: user.firstName+" "+user.lastName,
+          date: post.time,
+          body: post.body,
+          totallike: 0,
+          comment: '',
+          watch: 0,
+          slug:post.slug,
+          userId:post.userId
+        };
+        this.postuser.push(p);
+        console.log(p)
       });
 
     });
 
   }
-  GetUserPostById(id: number): void {
+  GetUserPostById(slug:string): void {
+    console.log(slug)
     this.comment = []
-    if (this.postuser.find(x => x.id === id) !== undefined) {
-      this.postuserdetail = this.postuser.find(x => x.id === id);
+    if (this.postuser.find(x => x.slug === slug) !== undefined) {
+      this.postuserdetail = this.postuser.find(x => x.slug === slug);
+      //console.log(x.slug)
       setTimeout(() => {
-            this.postService.getComment(id).subscribe((data: Comment[]) => {
+            this.postService.getComment(1).subscribe((data: Comment[]) => {
         forkJoin(
           data.map(cmt =>
 
@@ -80,7 +81,6 @@ export class PostComponent implements OnInit {
         ).subscribe((cmtuser: User[]) => {
           data.forEach((cmt, index) => {
             const user = cmtuser[index];
-
             if (Array.isArray(user) && user.length > 0)
               cmt.username = user[0].name;
           });
@@ -91,6 +91,7 @@ export class PostComponent implements OnInit {
 
       
     }
+
   }
   click(){
     console.log("click")

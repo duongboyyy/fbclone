@@ -15,7 +15,7 @@ import { ListchatComponent } from './listchat/listchat.component';
 import { HeaderComponent } from './header/header.component';
 import { HoverDirective } from './directive/hover.directive';
 import { SendDirective } from './directive/send.directive';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BoldDirective } from './directive/bold.directive';
 import { ClickDirective } from './directive/click.directive';
 import { DetailPostComponent } from './detail-post/detail-post.component';
@@ -25,6 +25,15 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowboxDirective } from './directive/showbox.directive';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { AuthInterceptor } from './auth.interceptor';
+import { ProtectGuard } from './protect.guard';
+import { AutoresizeDirective } from './directive/autoresize.directive';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+//import { AngularFireFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from 'src/environments/environment';
+import { AddDivAfterSixthDirective } from './directive/add-div-after-sixth.directive';
 
 @NgModule({
   declarations: [
@@ -48,7 +57,10 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
          BoxChatComponent,
          LoginComponent,
          RegisterComponent,
-         ShowboxDirective
+         ShowboxDirective,
+         AutoresizeDirective,
+         AddDivAfterSixthDirective,
+         
   ],
   imports: [
     BrowserModule,
@@ -56,9 +68,15 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     HttpClientModule,
     ReactiveFormsModule,
     CKEditorModule,
-    FormsModule
+    FormsModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers:[
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ProtectGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

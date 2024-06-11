@@ -1,15 +1,9 @@
-// export interface Post {
-//     userId:number,
-//     id:number,
-//     title:string,
-//     body:string
-// }
 export interface Post {
-    idPost:number,
     time:Date,
-    idUser:string,
+    userId:string,
     share:number,
     body:string,
     like:number,
+    slug:string
 }
 

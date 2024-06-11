@@ -10,7 +10,7 @@ import { Comment } from '../model/comment';
 export class PostService {
 
   url='https://jsonplaceholder.typicode.com'
-  url2='https://localhost:44315/api/Posts'
+  url2='https://localhost:44311/api/Posts'
   constructor(private http: HttpClient) { }
 
   // getPosts(): Observable<Post[]> {

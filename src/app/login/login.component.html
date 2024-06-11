@@ -2,8 +2,8 @@
     <form class="form" [formGroup]="user" >
         <h3>Login</h3>
         <div class="form-group">
-            <label for="username">Username</label>
-            <input formControlName="username"  class="username" class="form-control" type="text">
+            <label for="email">Username</label>
+            <input formControlName="email"  class="username" class="form-control" type="text">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -15,5 +15,6 @@
         </div>
         <span>{{this.report}}</span>
         <button (click)="Login()" class="btn btn-primary">Login</button>
+        <a href="/register" class="d-flex justify-content-end">Register</a>
     </form>
 </div>

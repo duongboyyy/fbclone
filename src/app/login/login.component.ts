@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { AccountService } from '../services/account.service';
+import { login } from '../model/login';
 
 @Component({
   selector: 'app-login',
@@ -10,20 +12,30 @@ import { Route, Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user= new FormGroup({
-    username: new FormControl(''),
-      password:new FormControl('')
+    email: new FormControl(''),
+    password:new FormControl('')
   });
+  account!:login
   report!:string
-  constructor(private router: Router) { }
+  constructor(private router: Router,private accountService: AccountService) { }
 
   ngOnInit(): void {
-  }
-  Login(){
-    if(this.user.value.username===this.user.value.password)
-      this.router.navigate([""]);
-    else{
-      this.report="dang nhap ko thanh cong";
+    this.account= {
+      email:"",
+      password:""
     }
-    console.log(this.user.value);
+  }
+  async Login(){
+    this.account=this.user.value
+    await this.accountService.Login(this.account).subscribe((response)=>{
+      
+      console.log(response)
+      localStorage.setItem('token', response);
+      this.router.navigateByUrl('/');
+      
+      //this.isAuthenticated = true;
+    })
+    
+    console.log(this.account);
   }
 }

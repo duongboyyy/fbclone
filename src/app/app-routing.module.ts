@@ -6,6 +6,7 @@ import { ImageComponent } from './image/image.component';
 import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RegisterComponent } from './register/register.component';
+import { ProtectGuard } from './protect.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'post', component: PostComponent },
       { path: 'image', component: ImageComponent },
-    ]
+    ],
+    canActivate: [ProtectGuard]
   },
   {
     path:"login",

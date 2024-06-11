@@ -1,13 +1,10 @@
 export interface User {
-    id:number,
-    name:string,
-    username:string,
-    email:string,
-    address:{
-        street:string,
-        suite:string,
-        city:string
-    },
-    phone:string,
-    website:string,
+    id:string,
+    firstName:string,
+    lastName:string,
+    avatar:string,
+    coverImage:string,
+    address:string,
+    gender:boolean,
+    totalFriend:number
 }

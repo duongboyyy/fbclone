@@ -1,26 +1,94 @@
-<div>
-    
-</div>
-
-<div class="row">
-    <div class="col-md-11">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Using Ckeditor in Angular</h5>
-                <div>
-                    <ckeditor [(ngModel)]="post" [editor]="Editor" (ready)="onReady($event)" ></ckeditor>
-                    <button (click)="CreatePost()" class="btn btn-success">Create</button>
-                </div>
- 
-            </div>
- 
+<div class="create row d-flex ">
+    <div class="input d-flex col-12 align-items-center">
+        <div class="avatar">
+            <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+        </div>
+        <div class="input-text">
+            <input type="text" placeholder="What do you think?" disabled="disabled">
         </div>
     </div>
-    <div class="col-md-11">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Display value</h5>
-                
+    <hr>
+    <div class="option d-flex col-12 justify-content-around">
+        <div appHover class="item flex-fill justify-content-center">
+            <i class="fa-regular fa-thumbs-up"></i> Like
+        </div>
+        <div appHover class=" item flex-fill justify-content-center" data-toggle="modal" data-target="#CreateModal">
+            <i class="fa-regular fa-comment"></i> Comment
+        </div>
+        <div appHover class="item flex-fill justify-content-center">
+            <i class="fa-solid fa-share"></i> Share
+        </div>
+    </div>
+</div>
+
+<app-post class="d-flex justify-content-center"></app-post>
+
+<div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="text-align: center; width: 100%;">
+                    Create a article
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex">
+                    <div class="image">
+                        <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+                    </div>
+                    <div>
+                        <strong class="name">
+                            {{username}}
+                        </strong>
+                    </div>
+                </div>
+                <div class="text">
+                    <!-- <div class="row">
+                        <div class="col-md-12 d-flex justify-content-center">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div>
+                                        <ckeditor [(ngModel)]="post" [editor]="Editor" (ready)="onReady($event)">
+                                        </ckeditor>
+                                        <button (click)="CreatePost()" class="btn btn-success">Create</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> -->
+                    <textarea appAutoresize name="" id="" placeholder="Something..."></textarea>
+                    <div class="upload">
+                        <label for="file-upload" class="custom-file-upload">
+                            <div>
+                                <i class="fa-solid fa-image"></i>
+                                <span>
+                                    Upload image or video
+                                </span>
+                            </div>
+                        </label>
+                        <!-- <input hidden id="file-upload" type="file" multiple (change)="onFileSelected($event)" />
+                        <div class="image-preview-container">
+                            <div class="image-preview" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
+                                <img [src]="image" alt="Image preview">
+
+                            </div>
+                            
+                        </div> -->
+                        <input type="file">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <button class="btn btn-primary" (click)="save()">
+                    Create
+                </button>
             </div>
         </div>
     </div>

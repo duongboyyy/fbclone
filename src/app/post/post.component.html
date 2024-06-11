@@ -23,9 +23,9 @@
                     <i class="fa-solid fa-xmark"></i>
                 </div>
             </div>
-            <div class="body">
+            <div class="body" [innerHTML]="item.body">
                 <!-- {{item.title | uppercase}} -->
-                <span [innerHTML]="item.body"></span>
+                
             </div>
             <hr>
             <div class="interact d-flex justify-content-between">
@@ -43,7 +43,7 @@
                 </div>
                 <div appHover class=" item flex-fill justify-content-center" data-toggle="modal"
                     data-target="#PostModal" 
-                    (click)="GetUserPostById(item.id)" 
+                    (click)="GetUserPostById(item.slug)" 
                     >
                     <i class="fa-regular fa-comment"></i> Comment
                 </div>

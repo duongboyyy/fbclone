@@ -1,5 +1,6 @@
 export interface Postuser {
-    id:number,
+    userId:string,
+    slug:string,
     username:string,
     date:Date,
     body:string,
