@@ -6,6 +6,7 @@ import { PostService } from '../services/post.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { formatDate } from '@angular/common';
 import { finalize } from 'rxjs';
+import { file } from '../model/file';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,6 +17,9 @@ export class HomeComponent implements OnInit {
   title = 'Create a new Post';
   postmodel!:Post
   username!:any
+  imagePreviews: string[] = [];
+  imageList:any[]=[];
+  file!:file
   public Editor = DecoupledEditor;
 
   public onReady( editor: DecoupledEditor ): void {
@@ -44,7 +48,7 @@ export class HomeComponent implements OnInit {
     
   }
   CreatePost(){
-    
+    this.saveImage()
     this.postmodel.body=this.post
     this.postmodel.userId=localStorage.getItem("userid")!
     this.postmodel.like=0
@@ -60,13 +64,11 @@ export class HomeComponent implements OnInit {
     console.log(this.postmodel)
   }
 
-  imagePreviews: string[] = [];
-  imageList:any[]=[];
+  
   onFileSelected(event: any): void {
     const files = event.target.files;
     this.imageList= event.target.files;
     if (files) {
-      //this.imagePreviews = [];
       for (let file of files) {
         const reader = new FileReader();
         reader.onload = (e: any) => {
@@ -80,7 +82,7 @@ export class HomeComponent implements OnInit {
   get remainingCount() {
     return this.imagePreviews.length - 6;
   }
-  save(){
+  async saveImage(){
     if(this.imageList){
       for(let item of this.imageList){
         const nameImg = this.getCurrentDateTime() + item.name;
@@ -89,8 +91,10 @@ export class HomeComponent implements OnInit {
           finalize(() => {
             fileRef.getDownloadURL().subscribe((url) => {
     
-              //this.formCreateVaccine.patchValue({imgVaccine: url});
-    
+              this.file.id="2d6ffb14-b819-4319-ae39-3e6e4be5bf37";
+              //this.file.postId=localStorage.getItem("UserId");
+              this.postService.uploadImage(this.file);
+              console.log(url)
               // Call API to create vaccine
               // this.vaccineService.createVaccineDTO(this.formCreateVaccine.value).subscribe(() => {
               //   this.router.navigateByUrl('vaccine-list').then(r => this.alertService.showMessage("Thêm mới thành công!"));

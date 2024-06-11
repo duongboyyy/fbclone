@@ -4,6 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable, delay, take } from 'rxjs';
 import { User } from '../model/user';
 import { Comment } from '../model/comment';
+import { file } from '../model/file';
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +12,7 @@ export class PostService {
 
   url='https://jsonplaceholder.typicode.com'
   url2='https://localhost:44311/api/Posts'
+  url3='https://localhost:44311/api/Upload'
   constructor(private http: HttpClient) { }
 
   // getPosts(): Observable<Post[]> {
@@ -34,5 +36,8 @@ export class PostService {
       'Content-Type': 'application/json; charset=utf-8'
     });
     return this.http.post<Post>(`${this.url2}/Create`, newpost,{ headers: headers });
+  }
+  uploadImage(file:file): Observable<file>{
+    return this.http.post<file>(`${this.url2}/Post`, file);
   }
 }
