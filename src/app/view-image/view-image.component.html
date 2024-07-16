@@ -1,0 +1,69 @@
+<div class="modal" id="ViewImageModal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-hidden">
+
+    </div>
+    <div class="modal-custom row">
+        <button class="close-btn" data-dismiss="modal">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="image col-9 justify-content-center d-flex">
+            <img *ngIf="listImage?.length" src="{{listImage[index].image}}" alt="alth">
+
+            <button class="previous" (click)="previous()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <button class="next" (click)="next()">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="info col-3">
+            <div class="item-post" *ngIf="item">
+                <div class="header d-flex justify-content-between">
+                    <div class="d-flex">
+                        <div class="image">
+                            <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+                        </div>
+                        <div >
+                            <strong class="name">
+                                {{item.user.lastName+" "+item.user.firstName}}
+                            </strong>
+    
+                            <div class="time">
+                                {{item.time | date:'EE, dd/MM/yyy HH:mm'}}
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
+                <div class="body" [innerHTML]="item.body">
+                </div>
+    
+                
+                <hr>
+                <div class="interact d-flex justify-content-between">
+                    <div class="like">
+                        <i class="fa-solid fa-heart"></i>{{item.like}}
+                    </div>
+                    <div class="comment">
+                        0<i class="fa-solid fa-comment"></i> 0<i class="fa-solid fa-share"></i>
+                    </div>
+                </div>
+                <hr>
+                <!-- <div class="footer d-flex justify-content-around w-100">
+                    <div appHover class="item flex-fill justify-content-center">
+                        <i class="fa-regular fa-thumbs-up"></i> Like
+                    </div>
+                    <div appHover class=" item flex-fill justify-content-center" data-toggle="modal"
+                        data-target="#PostModal" (click)="GetUserPostById(item.id)">
+                        <i class="fa-regular fa-comment"></i> Comment
+                    </div>
+                    <div appHover class="item flex-fill justify-content-center">
+                        <i class="fa-solid fa-share"></i> Share
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+</div>

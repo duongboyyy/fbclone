@@ -1,0 +1,62 @@
+<div class="modal-body">
+    <div class="d-flex">
+        <div class="image d-flex">
+            <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+            <select (change)="onSelected($event)">
+                <option>Choose user</option>
+                <option *ngFor="let item of listuser" value="{{item.id}}" >
+                    {{item.lastName+" "+ item.firstName}}
+                </option>
+            </select>
+        </div>
+        <div>
+            <strong class="name">
+
+            </strong>
+        </div>
+    </div>
+    <div class="text">
+        <!-- <div class="row">
+            <div class="col-md-12 d-flex justify-content-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div>
+                            <ckeditor [(ngModel)]="post" [editor]="Editor" (ready)="onReady($event)">
+                            </ckeditor>
+                            <button (click)="CreatePost()" class="btn btn-success">Create</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div> -->
+        <textarea appAutoresize [(ngModel)]="post" name="" id="" placeholder="Something..." ></textarea>
+        <div class="upload">
+            <label for="file-upload" class="custom-file-upload">
+                <div>
+                    <i class="fa-solid fa-image"></i>
+                    <span>
+                        Upload image or video
+                    </span>
+                </div>
+            </label>
+            <label class="custom-file-upload remove" (click)="removeImagePreview()">
+                <div>
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </label>
+            <input hidden id="file-upload" type="file" multiple (change)="onFileSelected($event)" />
+            <div class="image-preview-container">
+                <div class="image-preview" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
+                    <img [src]="image" alt="Image preview">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button  class="btn btn-primary" (click)="CreatePost()" [attr.data-dismiss]="text">
+        Create
+    </button>
+</div>

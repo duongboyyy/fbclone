@@ -8,7 +8,7 @@
             <i class="fa-solid fa-magnifying-glass"></i>
         </div>
     </div>
-    <div class="col-4 d-flex justify-content-center ">
+    <div class="col-4 d-flex justify-content-center item-center">
         <div class="navbar-nav" >
             <a appHover appClick class="nav-link item " routerLink="/" >
                 <i class="fa-solid fa-house"></i>
@@ -28,19 +28,20 @@
         </div>
     </div>
     <div class="col-4">
-        <div class="navbar-nav d-flex justify-content-end">
+        <div class="navbar-nav d-flex justify-content-end item-right">
             <span appHover class="nav-link item" href=""><i class="fa-solid fa-bell"></i></span>
-            <span appHover class="nav-link item" href=""><i class="fa-solid fa-message"></i></span>
+            <span appHover class="nav-link item" routerLink="message"><i class="fa-solid fa-message"></i></span>
             <span appHover class="nav-link item dropdown" href="">
                 
                 <div class="dropdown-toggle"  data-toggle="dropdown" aria-expanded="false">
                     <img  src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
                 </div>
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a class="dropdown-item" href="/">Infor</a>
+                    <a class="dropdown-item" href="/info">Infor</a>
                     <a class="dropdown-item" href="/login" (click)="logout()">Logout</a>
                 </div>
             </span>
         </div>
+        
     </div>
 </div>

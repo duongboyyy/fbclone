@@ -34,6 +34,16 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from 'src/environments/environment';
 import { AddDivAfterSixthDirective } from './directive/add-div-after-sixth.directive';
+import { ViewImageComponent } from './view-image/view-image.component';
+import { UpdatePostComponent } from './update-post/update-post.component';
+import { LayoutAdminComponent } from './admin/layout-admin/layout-admin.component';
+import { LoginAdminComponent } from './admin/login-admin/login-admin.component';
+import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';
+import { ManagerArticleComponent } from './admin/manager-article/manager-article.component';
+import { ManagerUserComponent } from './admin/manager-user/manager-user.component';
+import { CreatePostAdminComponent } from './admin/create-post-admin/create-post-admin.component';
+
+
 
 @NgModule({
   declarations: [
@@ -60,6 +70,15 @@ import { AddDivAfterSixthDirective } from './directive/add-div-after-sixth.direc
          ShowboxDirective,
          AutoresizeDirective,
          AddDivAfterSixthDirective,
+         ViewImageComponent,
+         UpdatePostComponent,
+         LayoutAdminComponent,
+         LoginAdminComponent,
+         DashboardAdminComponent,
+         ManagerArticleComponent,
+         ManagerUserComponent,
+         CreatePostAdminComponent,
+         
          
   ],
   imports: [
@@ -71,7 +90,9 @@ import { AddDivAfterSixthDirective } from './directive/add-div-after-sixth.direc
     FormsModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireStorageModule
+    AngularFireStorageModule,
+   
+    
   ],
   providers:[
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

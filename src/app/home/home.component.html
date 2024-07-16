@@ -3,25 +3,21 @@
         <div class="avatar">
             <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
         </div>
-        <div class="input-text">
-            <input type="text" placeholder="What do you think?" disabled="disabled">
+        <div class="input-text" data-toggle="modal" data-target="#CreateModal">
+            <input type="text" placeholder="What do you think?" >
         </div>
     </div>
     <hr>
     <div class="option d-flex col-12 justify-content-around">
-        <div appHover class="item flex-fill justify-content-center">
-            <i class="fa-regular fa-thumbs-up"></i> Like
+        <div appHover class="item flex-fill justify-content-center" data-toggle="modal" data-target="#CreateModal">
+            <i class="fa-regular fa-image"></i> Video/Image
         </div>
         <div appHover class=" item flex-fill justify-content-center" data-toggle="modal" data-target="#CreateModal">
-            <i class="fa-regular fa-comment"></i> Comment
-        </div>
-        <div appHover class="item flex-fill justify-content-center">
-            <i class="fa-solid fa-share"></i> Share
+            <i class="fa-regular fa-face-smile"></i> Emotion
         </div>
     </div>
 </div>
-
-<app-post class="d-flex justify-content-center"></app-post>
+<app-post class="d-flex justify-content-center" ></app-post>
 
 <div class="modal fade" id="CreateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md modal-dialog-scrollable">
@@ -30,7 +26,7 @@
                 <h5 class="modal-title" style="text-align: center; width: 100%;">
                     Create a article
                 </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -55,13 +51,11 @@
                                         </ckeditor>
                                         <button (click)="CreatePost()" class="btn btn-success">Create</button>
                                     </div>
-
                                 </div>
-
                             </div>
                         </div>
                     </div> -->
-                    <textarea appAutoresize name="" id="" placeholder="Something..." ></textarea>
+                    <textarea appAutoresize [(ngModel)]="post" name="" id="" placeholder="Something..." ></textarea>
                     <div class="upload">
                         <label for="file-upload" class="custom-file-upload">
                             <div>
@@ -71,23 +65,58 @@
                                 </span>
                             </div>
                         </label>
+                        <label class="custom-file-upload remove" (click)="removeImagePreview()">
+                            <div>
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                        </label>
                         <input hidden id="file-upload" type="file" multiple (change)="onFileSelected($event)" />
-                        <div class="image-preview-container">
+                        <div class="image-preview-container" *ngIf="imagePreviews.length==1" >
+                            <div class="image-preview-one" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
+                                <img [src]="image" alt="Image preview">
+                            </div>
+                        </div>
+                        <div class="image-preview-container" *ngIf="imagePreviews.length==2" >
+                            <div class="image-preview-two" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
+                                <img [src]="image" alt="Image preview">
+                            </div>
+                        </div>
+                        <div class="image-preview-container" *ngIf="imagePreviews.length==3" >
+                            <div class="image-preview-three" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
+                                <img [src]="image" alt="Image preview">
+                            </div>
+                        </div>
+                        <div class="image-preview-container" *ngIf="imagePreviews.length==4" >
+                            <div class="image-preview-four" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
+                                <img [src]="image" alt="Image preview">
+                            </div>
+                        </div>
+                        <div class="image-preview-container" *ngIf="imagePreviews.length==5" >
+                            <div class="image-preview-five" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
+                                <img [src]="image" alt="Image preview">
+                            </div>
+                        </div>
+                        <div class="image-preview-container" *ngIf="imagePreviews.length>=6" >
                             <div class="image-preview" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
                                 <img [src]="image" alt="Image preview">
-
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" (click)="saveImage()">
+                <button  class="btn btn-primary" (click)="CreatePost()" [attr.data-dismiss]="text">
                     Create
                 </button>
             </div>
         </div>
     </div>
 </div>
+<ng-template #oneimage>
+    
+</ng-template>
+<ng-template #allimage>
+    <div class="image-preview" *ngFor="let image of imagePreviews; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="remainingCount">
+        <img [src]="image" alt="Image preview">
+    </div>
+</ng-template>

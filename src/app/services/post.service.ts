@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Post } from '../model/post';
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http'
 import { Observable, delay, take } from 'rxjs';
 import { User } from '../model/user';
-import { Comment } from '../model/comment';
+import { CommentModel } from '../model/commentModel';
 import { file } from '../model/file';
+import { Postuser } from '../model/postuser';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,15 +19,16 @@ export class PostService {
   // getPosts(): Observable<Post[]> {
   //   return this.http.get<Post[]>(`${this.url}/posts`).pipe(delay(500));
   // }
-  getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(`${this.url2}`).pipe(delay(500));
+  getPosts(pageNumber: number, pageSize: number): Observable<Postuser[]> {
+    let params = new HttpParams()
+      .set('pageNumber', pageNumber.toString())
+      .set('pageSize', pageSize.toString());
+    return this.http.get<Postuser[]>(`${this.url2}`,{ params }).pipe(delay(500));
   }
   getUsers():Observable<User[]>{
     return this.http.get<User[]>(`${this.url}/users`)
   }
-  getComment(id:number):Observable<Comment[]>{
-    return this.http.get<Comment[]>(`${this.url}/comments?postId=${id}`)
-  }
+
   getUsersById(id:number):Observable<User>{
     return this.http.get<User>(`${this.url}/users?id=${id}`).pipe(delay(500))
   }
@@ -38,6 +40,25 @@ export class PostService {
     return this.http.post<Post>(`${this.url2}/Create`, newpost,{ headers: headers });
   }
   uploadImage(file:file): Observable<file>{
-    return this.http.post<file>(`${this.url2}/Post`, file);
+    return this.http.post<file>(`${this.url3}/Post`, file);
+  }
+  delUpload(id:number):Observable<any>{
+    return this.http.delete<any>(`${this.url3}/DelByIdPost/${id}`);
+  }
+  getUploadByPostId(id:number):Observable<file[]>{
+    return this.http.get<file[]>(`${this.url3}/GetByIdPost/${id}`);
+  }
+  deletePost(id:number,userid:string):Observable<any>{
+    return this.http.delete<any>(`${this.url2}/Delete/${id}`,{ params: { userid } });
+  }
+  deletePostAdmin(id:number):Observable<any>{
+    return this.http.delete<any>(`${this.url2}/Admin/Delete/${id}`);
+  }
+  updatePost(id:number, post:Post):Observable<Post>{
+    return this.http.put<Post>(`${this.url2}/Put/${id}`,post);
+  }
+  likepost(userid:string, postid:number):Observable<string>{
+    var body={userid,postid}
+    return this.http.post<string>(`${this.url2}/Like`,body)
   }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,14 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
   userName:any
-  constructor() {
-
+  constructor(private accountService:AccountService) {
 
   }
-
   ngOnInit(): void {
-    this.userName=localStorage.getItem("userName");
+     this.accountService.getUserInfo().subscribe(res=>{
+      this.userName=res.lastName+" "+res.firstName
+     })
   }
-  
-  
 }

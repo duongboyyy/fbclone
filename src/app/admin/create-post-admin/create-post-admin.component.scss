@@ -1,0 +1,120 @@
+.modal-body {
+    .image {
+        margin-right: 5px;
+
+        img {
+            height: 3rem;
+            border-radius: 50%;
+            border: 1px solid #dddddd;
+        }
+    }
+
+    .text {
+        margin-top: 5px;
+
+        textarea {
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: hidden;
+            width: 100%;
+            resize: none;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+    }
+
+}
+
+.modal-footer {
+    button {
+        width: 100%;
+    }
+}
+
+.upload {
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+        height: 30px;
+        text-align: center;
+        width: 50%;
+        align-content: center;
+        border-radius: 5px;
+
+        i {
+            font-size: 16px;
+        }
+
+        &:hover {
+            background-color: #e4e4e4;
+        }
+    }
+
+    .remove {
+        width: 10%;
+        margin-left: 5px;
+    }
+
+    .image-preview-container {
+        display: flex;
+        flex-wrap: wrap;
+        position: relative;
+
+        .image-preview {
+            position: relative;
+            //top: 150px;
+            //left: 0;
+            width: 30%;
+            //height: 32%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 130px;
+                object-fit: cover;
+                border: 1px solid white;
+            }
+        }
+
+        .image-preview:nth-child(n+6) {
+            position: absolute;
+            left: 0;
+            top: 130px;
+            margin-left: calc(60%);
+            background-color: red;
+        }
+
+        .image-preview.overlay::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Màu sắc của overlay với độ trong suốt */
+            pointer-events: none;
+            /* Đảm bảo overlay không ảnh hưởng đến sự tương tác với ảnh */
+        }
+
+        .image-preview .overlay-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            font-weight: 500;
+        }
+    }
+
+}
+.scroll{
+    overflow: scroll;
+    position: relative;
+}

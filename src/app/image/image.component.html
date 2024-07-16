@@ -1,1 +1,65 @@
-<p>image works!</p>
+<div class="d-flex ">
+    <label data-toggle="modal" data-target="#CreateVideoModal" class="btn-upload-video" >
+        +Upload 
+    </label>
+
+</div>
+<div class="d-flex justify-content-center video" *ngFor="let item of listvideo">
+    <video controls src="{{item.url}}.mp4"></video>
+    <div class="infor">
+        <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+        {{item.user.lastName+" "+item.user.firstName}}
+        <div>
+            {{item.title}}
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="CreateVideoModal" tabindex="-1"  aria-hidden="true">
+    <div class="modal-dialog modal-md modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="text-align: center; width: 100%;">
+                    Create a article
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex">
+                    <div class="image">
+                        <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+                    </div>
+                    <div>
+                        <strong class="name">
+                            Duong Tran
+                        </strong>
+                    </div>
+                </div>
+                <div class="text">
+                    
+                    <textarea appAutoresize [(ngModel)]="title" name="" id="" placeholder="Something..." ></textarea>
+                    <input hidden id="video-upload" type="file" accept=".mp4" (change)="onFileSelected($event)">
+                    
+                    <div class="d-flex">
+                        <label for="video-upload" class="btn-upload-video" >
+                        +Upload 
+                        </label>
+                        <label for="" class="btn-upload-video" (click)="removePreview()" style="margin-left: 5px;">
+                            x
+                        </label>
+                    </div>
+                    <div class="" *ngIf="videopreview">
+                        <video  controls src="{{videopreview}}"></video>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button  class="btn btn-primary" (click)="saveImage()">
+                    Create
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -8,47 +8,92 @@
                     </div>
                     <div>
                         <strong class="name">
-                            {{item.username}}
+                            {{item.user.lastName+" "+item.user.firstName}}
                         </strong>
 
                         <div class="time">
-                            {{item.date | date:'EE, dd/MM/yyy HH:mm'}}
+                            {{item.time | date:'EE, dd/MM/yyy HH:mm'}}
                         </div>
 
                     </div>
                 </div>
-                <div class="icon">
-                    <i class="fa-solid fa-ellipsis"></i>
+                <div class="icon" >
+                    <i class="fa-solid fa-ellipsis" data-toggle="modal"
+                    data-target="#UpdatePostModal" (click)="GetUserPostById(item.id)"></i>
+                    <app-update-post (postUpdated)="loadData()" [postuserdetail]="postuserdetail" ></app-update-post>
 
-                    <i class="fa-solid fa-xmark"></i>
+                    <i class="fa-solid fa-xmark" (click)="deletePost(item.id)"></i>
                 </div>
             </div>
             <div class="body" [innerHTML]="item.body">
-                <!-- {{item.title | uppercase}} -->
-                
+
+
+            </div>
+
+            <!-- <div class="upload">
+                <div class="image-preview" *ngFor="let src of item.uploads; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="item.uploads.length-6">
+                    <img class="" src="{{src.image}}" alt="" data-toggle="modal" data-target="#ViewImageModal" (click)="CurrentImage(i,item.uploads,item)">
+                </div>
+            </div> -->
+            <div class="upload" *ngIf="item.uploads.length==1" >
+                <div class="image-preview-one" *ngFor="let src of item.uploads; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="item.uploads.length-6">
+                    <img [src]="src.image" alt="Image preview" data-toggle="modal" data-target="#ViewImageModal" (click)="CurrentImage(i,item.uploads,item)">
+                </div>
+            </div>
+            <div class="upload" *ngIf="item.uploads.length>=2 && item.uploads.length<3 " >
+                <div class="image-preview-two" *ngFor="let src of item.uploads; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="item.uploads.length-6">
+                    <img [src]="src.image" alt="Image preview" data-toggle="modal" data-target="#ViewImageModal" (click)="CurrentImage(i,item.uploads,item)">
+                </div>
+            </div>
+            <div class="upload" *ngIf="item.uploads.length>=3  && item.uploads.length<4 " >
+                <div class="image-preview-three" *ngFor="let src of item.uploads; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="item.uploads.length-6">
+                    <img [src]="src.image" alt="Image preview" data-toggle="modal" data-target="#ViewImageModal" (click)="CurrentImage(i,item.uploads,item)">
+                </div>
+            </div>
+            <div class="upload" *ngIf="item.uploads.length>=4  && item.uploads.length<5 " >
+                <div class="image-preview-four" *ngFor="let src of item.uploads; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="item.uploads.length-6">
+                    <img [src]="src.image" alt="Image preview" data-toggle="modal" data-target="#ViewImageModal" (click)="CurrentImage(i,item.uploads,item)">
+                </div>
+            </div>
+            <div class="upload" *ngIf="item.uploads.length>=5  && item.uploads.length<6 " >
+                <div class="image-preview-five" *ngFor="let src of item.uploads; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="item.uploads.length-6">
+                    <img [src]="src.image" alt="Image preview" data-toggle="modal" data-target="#ViewImageModal" (click)="CurrentImage(i,item.uploads,item)">
+                </div>
+            </div>
+            <div class="upload" *ngIf="item.uploads.length>=6" >
+                <div class="image-preview" *ngFor="let src of item.uploads; let i=index" appAddDivAfterSixth [index]="i" [remainingCount]="item.uploads.length-6">
+                    <img [src]="src.image" alt="Image preview" data-toggle="modal" data-target="#ViewImageModal" (click)="CurrentImage(i,item.uploads,item)">
+                </div>
             </div>
             <hr>
             <div class="interact d-flex justify-content-between">
                 <div class="like">
-                    <i class="fa-solid fa-heart"></i>{{item.totallike}}
+                    <i *ngIf="item.isLike==true" class="fa-solid fa-heart"></i>
+                    <i *ngIf="item.isLike==false" class="fa-regular fa-heart"></i>{{item.like}}
                 </div>
                 <div class="comment">
-                    0<i class="fa-solid fa-comment"></i> 0<i class="fa-solid fa-share"></i>
+                    {{item.cmt}}<i class="fa-solid fa-comment"></i> 0<i class="fa-solid fa-share"></i>
                 </div>
             </div>
             <hr>
             <div class="footer d-flex justify-content-around w-100">
-                <div appHover class="item flex-fill justify-content-center">
-                    <i class="fa-regular fa-thumbs-up"></i> Like
+                <div appHover class="item flex-fill justify-content-center" (click)="like(item.id,item)">
+                    <span *ngIf="item.isLike==false">
+                        <i  class="fa-regular fa-thumbs-up"></i> 
+                        Like
+                    </span>
+                    <span *ngIf="item.isLike==true" style="color: #ffa500;">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        Like
+                    </span>
                 </div>
                 <div appHover class=" item flex-fill justify-content-center" data-toggle="modal"
-                    data-target="#PostModal" 
-                    (click)="GetUserPostById(item.slug)" 
-                    >
+                    data-target="#PostModal" (click)="GetUserPostById(item.id)"  (click)="CurrentImage(0,item.uploads,item)">
                     <i class="fa-regular fa-comment"></i> Comment
                 </div>
                 <div appHover class="item flex-fill justify-content-center">
-                    <i class="fa-solid fa-share"></i> Share
+                    <i  class="fa-solid fa-share"></i> 
+                    Share
                 </div>
             </div>
         </div>
@@ -58,28 +103,27 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" style="text-align: center; width: 100%;">
-                            Bài viết của {{item.username}}
+                            Bài viết của {{item.user.lastName+" "+item.user.firstName}}
                         </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div *ngIf="postuserdetail"  >
-                            <app-detail-post [detailpost]="postuserdetail" [cmtpost]="comment">
-                                    
-                            </app-detail-post>     
+                        <div *ngIf="postuserdetail">
+                            <app-detail-post  [detailpost]="postuserdetail" [cmtpost]="comment">
+
+                            </app-detail-post>
                         </div>
-                        
                     </div>
                     <div class="modal-footer">
                         <div class="image">
                             <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
                         </div>
                         <div class="input">
-                            <input class="input-comment" type="text" placeholder="Yours comment">
-                            
-                            <button (click)="click()">
+                            <input class="input-comment" type="text" placeholder="Yours comment" [(ngModel)]="bodyComment" (keydown.enter)="submitcomment()">
+
+                            <button (click)="submitcomment()">
                                 <i class="fa-solid fa-paper-plane"></i>
                             </button>
                         </div>
@@ -91,7 +135,7 @@
 </div>
 
 
-
+<app-view-image [listImage]="currentlist" [index]="currentindex" [item]="currentItem"></app-view-image>
 
 <ng-template #template1>
     Loading....

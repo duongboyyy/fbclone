@@ -1,4 +1,3 @@
-import { query } from '@angular/animations';
 import { ComponentFactoryResolver, ComponentRef, Directive, ElementRef, HostListener, ViewContainerRef } from '@angular/core';
 import { BoxChatComponent } from '../box-chat/box-chat.component';
 

@@ -1,0 +1,67 @@
+<button data-toggle="modal" data-target="#CreatePostAdmin">Add a new article</button>
+<div> </div>
+<table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Time</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list;  let i=index">
+        <th scope="row">{{i}}</th>
+        <td>{{item.user.lastName+" "+item.user.firstName}}</td>
+        <td>{{item.time | date:'EE, dd/MM/yyy HH:mm'}}</td>
+        <td>
+            <button data-toggle="modal"
+            data-target="#ManagePostModal" (click)="detailpost(item)">Details</button>
+            |
+            <button>Edit</button>
+            |
+            <button (click)="delete(item.id)">Delete</button>
+        </td>
+        <div class="modal fade" id="ManagePostModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        >
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="text-align: center; width: 100%;">
+                            Bài viết của {{item.user.lastName+" "+item.user.firstName}}
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div *ngIf="item">
+                            <app-detail-post  [detailpost]="detailpostuser" [cmtpost]="comment">
+
+                            </app-detail-post>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="CreatePostAdmin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="text-align: center; width: 100%;">
+                    Create a new article
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <app-create-post-admin (loadCreatePost)="onload()"></app-create-post-admin>
+            </div>
+        </div>
+    </div>
+  </div>

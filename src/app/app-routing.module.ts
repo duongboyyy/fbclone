@@ -7,6 +7,14 @@ import { LoginComponent } from './login/login.component';
 import { LayoutComponent } from './layout/layout.component';
 import { RegisterComponent } from './register/register.component';
 import { ProtectGuard } from './protect.guard';
+import { LayoutAdminComponent } from './admin/layout-admin/layout-admin.component';
+import { LoginAdminComponent } from './admin/login-admin/login-admin.component';
+import { DashboardAdminComponent } from './admin/dashboard-admin/dashboard-admin.component';
+import { ManagerArticleComponent } from './admin/manager-article/manager-article.component';
+import { ManagerUserComponent } from './admin/manager-user/manager-user.component';
+import { MessageComponent } from './message/message.component';
+import { profile } from 'console';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -20,12 +28,34 @@ const routes: Routes = [
     canActivate: [ProtectGuard]
   },
   {
+    path:"message",
+    component:MessageComponent
+  },
+  {
+    path:`info`,
+    component:ProfileComponent
+  },
+  {
     path:"login",
     component:LoginComponent
   },
   {
     path:"register",
     component:RegisterComponent
+  },
+  {
+    path:"admin",
+    children:[
+      {path:'',component:LoginAdminComponent},
+      {path:'dashboard',component:LayoutAdminComponent,
+        children:[
+          { path: 'managerarticle', component: ManagerArticleComponent },
+          { path: 'manageruser', component: ManagerUserComponent },
+        ],
+        
+        canActivate: [ProtectGuard]
+      },
+    ]
   }
 
 ];

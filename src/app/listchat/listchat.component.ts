@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
 import { User } from '../model/user';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-listchat',
@@ -11,10 +12,12 @@ export class ListchatComponent implements OnInit {
 
   user!:User[]
 
-  constructor(private postservice: PostService) { }
+  constructor(private postservice: PostService,
+    private accountservice: AccountService
+  ) { }
 
   ngOnInit(): void {
-    this.postservice.getUsers().subscribe((item:User[])=>{
+    this.accountservice.getUser().subscribe((item:User[])=>{
       this.user=item
       
     })

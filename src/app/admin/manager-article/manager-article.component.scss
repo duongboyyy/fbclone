@@ -1,0 +1,41 @@
+table{
+    background-color: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    thead{
+        background-color: #4e73df;
+        color: white;
+    }
+}
+.modal-footer{
+    justify-content: flex-start;
+    .image{
+        margin-right: 5px;
+        img{
+            height: 2rem;
+            border-radius: 50%;
+            border: 1px solid #dddddd;
+        }
+    }
+    .input{
+        flex: 1;
+        position: relative;
+        .input-comment{
+            background-color: #d1d1d15c;
+            border-radius: 5px;
+            border: none;
+            height: 2rem;
+            width: 100%;
+            padding: 15px 10px;
+            
+        }
+        button{
+            position: absolute;
+            right: 5px;
+            top: 2px;
+            border: none;
+            background-color: none;
+            color: #656565;
+        }
+    }
+    
+}

@@ -1,1 +1,83 @@
-<p>profile works!</p>
+<app-header></app-header>
+<div class="info">
+    <div class="background">
+        <img  src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+        <div class="btn-edit-background">
+            <i class="fa-solid fa-camera"></i> Edit background
+        </div>
+    </div>
+    <div style="padding: 0 2%;">
+        <div class="avatar">
+            <div class="image">
+                <img src="../../assets/0479f728630b134464327020f474ca45_tn.png" alt="">
+                <label class="btn-edit-background" data-toggle="modal"
+                data-target="#UploadAvatarModal">
+                    <i class="fa-solid fa-camera"></i>
+                </label>
+            </div>
+            <div class="name">
+                {{user.lastName+" "+user.firstName}}
+                <br>
+                <span style="font-size: 18px; font-weight: 400;"> {{user.totalFriend}} friends</span>
+            </div>
+        </div>
+        <hr>
+        <div class="navbar">
+            <div>
+                Article
+            </div>
+        </div>
+        <div class="content row">
+            <div class="infor-user col-md-4">
+                INTRODUCE
+                {{user.address}}
+            </div>
+            <div class="list-article col-md-7 d-flex justify-content-center">
+                <app-home></app-home>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="UploadAvatarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" style="text-align: center; width: 100%;">
+                   
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input hidden id="upload-avatar" type="file" accept=""  (change)="onFileSelected($event)" />
+                <label for="upload-avatar"   class="custom-file-upload">
+                    <div>
+                        <i class="fa-solid fa-image"></i>
+                        <span>
+                            Upload image or video
+                        </span>
+                    </div>
+                </label>
+                <label class="custom-file-upload remove" (click)="removeImagePreview()">
+                    <div>
+                        <i class="fa-solid fa-xmark"></i>
+                    </div>
+                </label>
+                <div class="image-preview-container"  >
+                    <div class="image-preview" *ngIf="imagePreviews">
+                        <img src="{{imagePreviews}}" alt="Image preview">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="input">
+                    <button >
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

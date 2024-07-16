@@ -1,1 +1,92 @@
-<p>message works!</p>
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-lg-12 pd-0">
+            <div class="card chat-app">
+                <div id="plist" class="people-list">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                    <ul class="list-unstyled chat-list mt-2 mb-0">
+                        <li appClick class="clearfix nav-link" *ngFor="let item of userlist"  (click)="selectbox(item)">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                <div class="about">
+                                    <div class="name">{{item.lastName+" "+item.firstName}}</div>
+                                    <div></div>
+                                    <div class="status"> <i class="fa fa-circle offline"></i> left 7 mins ago </div>                                            
+                                </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="chat" *ngIf="currentuser else template1">
+                    <div class="chat-header clearfix">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#view_info">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="avatar">
+                                </a>
+                                <div class="chat-about">
+                                    <h6 class="m-b-0">{{currentuser.lastName+" "+currentuser.firstName}}</h6>
+                                    <small>Online</small>  
+                                </div>
+                            </div>
+                            <div class="col-lg-6 hidden-sm text-right">
+                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i class="fa fa-camera"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-primary"><i class="fa fa-image"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-info"><i class="fa fa-cogs"></i></a>
+                                <a href="javascript:void(0);" class="btn btn-outline-warning"><i class="fa fa-question"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chat-history">
+                        <ul class="m-b-0" #chatContainer>
+                            <li class="clearfix" *ngFor="let msg of currenthistorychat">
+                                <div  *ngIf="msg.userId!=id" class="message my-message">
+                                    {{msg.body}}
+                                    <span  class="message-data-time time-left">{{msg.time | date:'dd/MM/yyy HH:mm'}}</span>
+                                </div>
+                                <div  *ngIf="msg.userId===id" class="message my-message float-right">
+                                    {{msg.body}}
+                                    <span class="message-data-time time-right">{{msg.time | date:'dd/MM/yyy HH:mm'}}</span>
+                                </div>
+                            </li> 
+                            <div >
+                                <li class="clearfix" *ngFor="let msg of messages" >
+                                    <div *ngIf="msg.BoxChat_UserId!=currentboxchatuserid">
+                                        <div  class="message my-message ">{{msg.body}}
+                                            <span class="message-data-time time-left">{{msg.time | date:'dd/MM/yyy HH:mm'}}</span>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="msg.BoxChat_UserId==currentboxchatuserid">
+                                        <div  class="message my-message float-right">
+                                            {{msg.body}}
+                                            <span class="message-data-time time-right">{{msg.time | date:'dd/MM/yyy HH:mm'}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="chat-message clearfix">
+                        <!-- <div class="input-group mb-0">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-send"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Enter text here...">                                    
+                        </div> -->
+                        <form (submit)="submit()">
+                            <input class="form-control" placeholder="Write a message" [value]="mess !== undefined ? mess : ''"
+                                   (change)="changeMessage($event)"
+                            />
+                          </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #template1>
+</ng-template>
